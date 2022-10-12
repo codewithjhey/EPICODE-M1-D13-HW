@@ -10,6 +10,15 @@
     Specify the title, the charset (UTF-8) and the viewport of the page.
     -->
     <style>
+      #newtask {
+        background-color: rgb(225, 182, 103);
+      }
+
+      li {
+        border: 1px solid rgb(116, 85, 209);
+        font-size: 20pt;
+      }
+
       /* EXERCISE 2:  
        Create a CSS class for the task list with a different background color
        Create a CSS class for the task list item with a border, a bold text and a bigger font size
@@ -49,7 +58,7 @@
 
     <input type="button" value="Sort" onclick="bubbleSort()" />
 
-    <script src="./index.js">
+    <script>
       /* EXERCISE 5:
                     Add a new task to the list.
                     Suggestion:
@@ -58,47 +67,60 @@
                     - Append the LI child to the UL
                 */
 
+      const addNewTask = function () {
+        const parentlist = document.getElementById("myTaskList")
+        const li = document.createElement("li")
+        let input = document.getElementById("newTask").value
+        li.innerText = input
+        parentlist.appendChild(li)
+      }
 
-            const parentlist = document.getElementById("newTask")
-            const addlist = document.createElement ("li")
-
-            const addNewTask = function () {
-             const ul = document.getElementById("myTaskList")
-             const li = document.createElement ("li")
-             let input = document.getElementById("newTask").value
-             li.innerText = input
-             ul.appendChild("li")
-            }
-
-          /* EXERCISE 6:
+      /* EXERCISE 6:
                     Create a function "removeLast" which removes the last item from the task list
                 */
+      const removeLast = function () {
+        let currentList = document.getElementsById("myTaskList")
+        const li = document.createElement("li")
+        currentList.lastchild.remove(li)
+      }
 
-          /* EXERCISE 7:
+      /* EXERCISE 7:
                     Create a function "removeFirst" which removes the first item from the task list
                 */
 
-          /* EXERCISE 8:
+      const removeFirst = function () {
+        let newLi = document.getElementsByTagName("li")
+        newLi[0].remove()
+      }
+
+      /* EXERCISE 8:
                    Create a function "getTasksAsArray" which returns, and prints to the console an array containing the tasks as strings
                 */
+      const getTasksAsArray = function () {
+        const newTaskRem1 = document.getElementById("myTaskList")
+        const newArray = []
+        for (i = 0; i < newTaskRem1.children.length; i++) {
+          newArray.push(newTaskRem1.childNodes[0 + i].innerText)
+        }
+        console.log(newArray)
+      }
 
-          /* EXERCISE 9:
+      /* EXERCISE 9:
                    Create a function "changeTaskBackgroundColor" and attach it to the "Change task background" button via JavaScript (not via html attribute)
                    Take the color from the color picker ad apply it as background to every list item
           */
 
-          /* ### EXTRA ### */
+      /* ### EXTRA ### */
 
-          /* EXERCISE 10:
+      /* EXERCISE 10:
                     Attach an eventListener to each new task you create. When the task receives the click it should be removed (only the clicked task should disappear)
           */
 
-          /* EXERCISE 11:
+      /* EXERCISE 11:
                    Create a function "bubbleSort()" which sorts the task list alphabetically using the bubble sort algorithm
           */
 
-
-          /* #### Suggestion:
+      /* #### Suggestion:
            - Break the code into many function for semplicity
            - Reuse the functions previously created */
     </script>

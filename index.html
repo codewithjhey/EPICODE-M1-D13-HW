@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Personal Task List</title>
+    <title>DOM Task List</title>
     <!-- EXERCISE 1:
     Specify the title, the charset (UTF-8) and the viewport of the page.
     -->
@@ -16,7 +15,7 @@
 
       li {
         border: 1px solid rgb(116, 85, 209);
-        font-size: 20pt;
+        font-size: 10pt;
       }
 
       /* EXERCISE 2:  
@@ -41,18 +40,19 @@
     <!-- EXERCISE 3
         Create a button "Remove Last Task" to trigger the function "removeLast"
         -->
-    <button onclick="removeLast">Click to remove last task</button>
+    <button class="btn-1" onclick="removeLast()">Remove Last Task</button>
 
     <!-- EXERCISE 4
         Create a button "Remove First Task" to trigger the function "removeFirst"
         -->
-    <button onclick="removeFirst(event)">Click to remove first task</button>
+    <button onclick="removeFirst()">Remove First Task</button>
+
     <ul id="myTaskList"></ul>
 
     <hr />
 
     <input type="color" placeholder="Color" id="colorPicker" />
-    <input type="button" value="Change task background" />
+    <input class="btn-color" type="button" value="Change task background" />
 
     <hr />
 
@@ -62,26 +62,28 @@
       /* EXERCISE 5:
                     Add a new task to the list.
                     Suggestion:
-                    - Use document.getElementById to get the UL item and the input text
+                    - Use document.getElementById to get the UL item and then input text
                     - Use the document.createElement to create the new List Item
                     - Append the LI child to the UL
                 */
+      const parentUl = document.getElementById("myTaskList")
+      const input = document.getElementById("newTask")
 
       const addNewTask = function () {
-        const parentlist = document.getElementById("myTaskList")
-        const li = document.createElement("li")
-        let input = document.getElementById("newTask").value
-        li.innerText = input
-        parentlist.appendChild(li)
+        const newLi = document.createElement("li")
+        newLi.innerText = input.value
+        let newTask = parentUl.appendChild(newLi)
       }
 
       /* EXERCISE 6:
                     Create a function "removeLast" which removes the last item from the task list
                 */
       const removeLast = function () {
-        let currentList = document.getElementsById("myTaskList")
-        const li = document.createElement("li")
-        currentList.lastchild.remove(li)
+        const itemList = document.getElementById("myTaskList")
+
+        console.log(itemList)
+
+        itemList.removeChild(itemList.lastElementChild)
       }
 
       /* EXERCISE 7:
@@ -89,18 +91,19 @@
                 */
 
       const removeFirst = function () {
-        let newLi = document.getElementsByTagName("li")
-        newLi[0].remove()
+        const itemList = document.getElementById("myTaskList")
+
+        itemList.removeChild(itemList.firstElementChild)
       }
 
       /* EXERCISE 8:
                    Create a function "getTasksAsArray" which returns, and prints to the console an array containing the tasks as strings
                 */
       const getTasksAsArray = function () {
-        const newTaskRem1 = document.getElementById("myTaskList")
+        const newLi = document.createElement("li")
         const newArray = []
-        for (i = 0; i < newTaskRem1.children.length; i++) {
-          newArray.push(newTaskRem1.childNodes[0 + i].innerText)
+        for (i = 0; i < newLi.length; i++) {
+          newArray.push(newLi[i].innerText)
         }
         console.log(newArray)
       }
@@ -109,6 +112,16 @@
                    Create a function "changeTaskBackgroundColor" and attach it to the "Change task background" button via JavaScript (not via html attribute)
                    Take the color from the color picker ad apply it as background to every list item
           */
+
+      const changeTaskBackgroundColor = function () {
+        const getLi = document.querySelectorAll("li")
+        const inputColor = document.getElementById("colorPicker")
+        for (i = 0; i < getLi.length; i++) {
+          getLi[i].style.backgroundColor = inputColor.value
+        }
+      }
+      let colorLi = document.querySelector(".btn-color")
+      colorLi.addEventListener("click", changeTaskBackgroundColor)
 
       /* ### EXTRA ### */
 
@@ -119,6 +132,14 @@
       /* EXERCISE 11:
                    Create a function "bubbleSort()" which sorts the task list alphabetically using the bubble sort algorithm
           */
+
+      /*    const bubbleSort = function () {
+        getLis = document.querySelectorAll("li")
+        const arr = []
+        for (i = 0; i < getLis.length; i++) {
+          arr.push.sort(getLis[i].innerText)
+        }
+      }
 
       /* #### Suggestion:
            - Break the code into many function for semplicity

@@ -100,10 +100,11 @@
                    Create a function "getTasksAsArray" which returns, and prints to the console an array containing the tasks as strings
                 */
       const getTasksAsArray = function () {
-        const newLi = document.createElement("li")
+        ul = document.querySelectorAll("li")
         const newArray = []
-        for (i = 0; i < newLi.length; i++) {
-          newArray.push(newLi[i].innerText)
+
+        for (i = 0; i < ul.length; i++) {
+          newArray.push(ul[i].innerText)
         }
         console.log(newArray)
       }
@@ -114,10 +115,10 @@
           */
 
       const changeTaskBackgroundColor = function () {
-        const getLi = document.querySelectorAll("li")
-        const inputColor = document.getElementById("colorPicker")
-        for (i = 0; i < getLi.length; i++) {
-          getLi[i].style.backgroundColor = inputColor.value
+        ul = document.querySelectorAll("li")
+        let inputColor = document.getElementById("colorPicker")
+        for (i = 0; i < ul.length; i++) {
+          ul[i].style.backgroundColor = inputColor.value
         }
       }
       let colorLi = document.querySelector(".btn-color")
@@ -133,7 +134,7 @@
                    Create a function "bubbleSort()" which sorts the task list alphabetically using the bubble sort algorithm
           */
 
-      /*    const bubbleSort = function () {
+      /* const bubbleSort = function () {
         getLis = document.querySelectorAll("li")
         const arr = []
         for (i = 0; i < getLis.length; i++) {
